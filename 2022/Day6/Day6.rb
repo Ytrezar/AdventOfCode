@@ -4,8 +4,7 @@ def getfirstunique(data, nbfirst)
     while (i < data.length())
         #Create array with the last nbfirst elements to compare
         if (test.length == nbfirst)
-            test.shift
-            test.append(data[i])
+            test.append(data[i]).shift
         else
             test.append(data[i])
         end
@@ -18,7 +17,7 @@ def getfirstunique(data, nbfirst)
 end
 
 def d6()
-	txt =  File.open("input.txt", "r")
+	txt =  File.open("2022/Day6/input.txt", "r")
     data = txt.read.split('')
     p getfirstunique(data, 4)
     p getfirstunique(data, 14)
