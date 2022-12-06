@@ -21,7 +21,7 @@ def d6()
 	txt =  File.open("input.txt", "r")
     data = txt.read.split('')
     p getfirstunique(data, 4)
-    #p getfirstunique(data, 14)
+    p getfirstunique(data, 14)
 end
 
 d6()
