@@ -82,15 +82,14 @@ def d9
 	data = txt.read.split("\n")
 	p1 =[[0,0],[0,0]]
 	p2 = [[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]]
-	#rope1 = Rope.new(p1)
+	rope1 = Rope.new(p1)
 	rope2 = Rope.new(p2)
 	data.each do |line|
-		#rope1.moving(line.split(' '))
+		rope1.moving(line.split(' '))
 		rope2.moving(line.split(' '))
 	end
-	#p rope1.tailpath.uniq.length
+	p rope1.tailpath.uniq.length
 	p rope2.tailpath.uniq.length
-	p rope2.tailpath
 end
 
 d9
