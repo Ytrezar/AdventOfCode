@@ -20,7 +20,6 @@ class Rope
 	def moveup(repetition)
 		while repetition > 0
 			self.snakeposition[0][0] += 1
-			#p self.snakeposition[0]
 			movetail
 			repetition -= 1
 		end
@@ -28,7 +27,6 @@ class Rope
 	def movedown(repetition)
 		while repetition > 0
 			self.snakeposition[0][0] -= 1
-			#p self.snakeposition[0]
 			movetail
 			repetition -= 1
 		end
@@ -36,7 +34,6 @@ class Rope
 	def moveright(repetition)
 		while repetition > 0
 			self.snakeposition[0][1] += 1
-			#p self.snakeposition[0]
 			movetail
 			repetition -= 1
 		end
@@ -44,7 +41,6 @@ class Rope
 	def moveleft(repetition)
 		while repetition > 0
 			self.snakeposition[0][1] -= 1
-			#p self.snakeposition[0]
 			movetail
 			repetition -= 1
 		end
@@ -53,20 +49,32 @@ class Rope
 	def movetail
 		i = 1
 		while i <= (self.snakeposition.length - 1)
+			#positive = go down // negative = go up
 			diffupdown = self.snakeposition[i-1][0] - self.snakeposition[i][0]
+			#positive = go left // negative = go right
 			diffleftright = self.snakeposition[i-1][1] - self.snakeposition[i][1]
 
 			#if the tail is close enough just do nothing
 			if diffupdown.abs <= 1 and diffleftright.abs <= 1
 				return
 			end
-			if diffupdown > 1
+
+			if diffupdown > 1 and diffleftright > 1 #diagonale move down and left
+				self.snakeposition[i] = [self.snakeposition[i - 1][0] - 1, self.snakeposition[i - 1][1] - 1]
+			elsif diffupdown < -1 and diffleftright > 1 #diagonale move up and left
+				self.snakeposition[i] = [self.snakeposition[i - 1][0] + 1, self.snakeposition[i - 1][1] - 1]
+			elsif diffupdown > 1 and diffleftright < -1 #diagonale move down and right
+				self.snakeposition[i] = [self.snakeposition[i - 1][0] - 1, self.snakeposition[i - 1][1] + 1]
+			elsif diffupdown < -1 and diffleftright < -1 #diagonale move up and right
+				self.snakeposition[i] = [self.snakeposition[i - 1][0] + 1, self.snakeposition[i - 1][1] + 1]
+
+			elsif diffupdown > 1 #in line move down
 				self.snakeposition[i] = [self.snakeposition[i - 1][0] - 1, self.snakeposition[i - 1][1]]
-			elsif diffupdown < -1
+			elsif diffupdown < -1 #in line move up
 				self.snakeposition[i] = [self.snakeposition[i - 1][0] + 1, self.snakeposition[i - 1][1]]
-			elsif diffleftright > 1
+			elsif diffleftright > 1 #in line move left
 				self.snakeposition[i] = [self.snakeposition[i - 1][0], self.snakeposition[i - 1][1] - 1]
-			else
+			else #in line move right
 				self.snakeposition[i] = [self.snakeposition[i - 1][0], self.snakeposition[i - 1][1] + 1]
 			end
 			if i == self.snakeposition.length - 1
