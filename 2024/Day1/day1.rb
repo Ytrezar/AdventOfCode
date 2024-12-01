@@ -1,4 +1,4 @@
-def d1()
+def d1
 	txt =  File.open("2024/Day1/input.txt", "r")
 	data = txt.read.split("\n")
 	processlines(data)
@@ -29,4 +29,4 @@ def processlines(data)
 	p resultp2
 end
 
-d1()
+d1
